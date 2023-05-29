@@ -1,0 +1,1 @@
+gcloud beta batch jobs submit simulation --location=asia-east1 --config=job.json

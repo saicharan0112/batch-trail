@@ -1,0 +1,48 @@
+{
+  "taskGroups": [
+    {
+      "taskSpec": {
+        "runnables": [
+          {
+            "script": {
+              "text": "bash /mnt/share/run_simulation.sh"
+            }
+          }
+        ],
+        "computeResource": {
+          "cpuMilli": 16000,
+          "memoryMib": 2048
+        },
+        "volumes": [
+          {
+            "gcs": {
+              "remotePath": "openfasoc_ci_bucket"
+            },
+            "mountPath": "/mnt/share"
+          }
+        ],
+        "maxRetryCount": 2,
+        "maxRunDuration": "86400s"
+      },
+      "taskCount": 1,
+      "parallelism": 1
+    }
+  ],
+  "allocationPolicy": {
+    "instances": [
+      {
+        "policy": {
+          "machineType": "c2-standard-16",
+          "provisioningModel": "SPOT"
+        }
+      }
+    ]
+  },
+  "labels": {
+    "department": "creative",
+    "env": "testing"
+  },
+  "logsPolicy": {
+    "destination": "CLOUD_LOGGING"
+  }
+}
